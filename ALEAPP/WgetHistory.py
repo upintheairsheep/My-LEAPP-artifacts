@@ -15,7 +15,7 @@ def get_WgetHistory(files_found, report_folder, seeker, wrap_text):
         report = ArtifactHtmlReport('WGET History')
         report.start_artifact_report(report_folder, f'WGET History')
         report.add_script()
-        data_headers = ('Order', 'Command')
+        data_headers = ('Order', 'URL downloaded')
         report.write_artifact_data_table(data_headers, data_list, file_found)
         report.end_artifact_report()
         
