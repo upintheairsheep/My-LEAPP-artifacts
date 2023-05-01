@@ -2,7 +2,7 @@ import codecs
 import csv
 from scripts.artifact_report import ArtifactHtmlReport
 from scripts.ilapfuncs import logfunc, tsv, is_platform_windows
-def get_WgetHistory(files_found, report_folder, seeker, wrap_text):
+def get_AshHistory(files_found, report_folder, seeker, wrap_text):
     data_list = []
     file_found = str(files_found[0])
     counter = 1
@@ -12,22 +12,22 @@ def get_WgetHistory(files_found, report_folder, seeker, wrap_text):
             counter += 1
             
     if len(data_list) > 0:
-        report = ArtifactHtmlReport('WGET History')
-        report.start_artifact_report(report_folder, f'WGET History')
+        report = ArtifactHtmlReport('Alphine Linux Bash History')
+        report.start_artifact_report(report_folder, f'Alphine Linux Bash History')
         report.add_script()
-        data_headers = ('Order', 'URL downloaded')
+        data_headers = ('Order', 'Command')
         report.write_artifact_data_table(data_headers, data_list, file_found)
         report.end_artifact_report()
         
-        tsvname = f'WGET History'
+        tsvname = f'Alphine Linux Bash History'
         tsv(report_folder, data_headers, data_list, tsvname)
         
     else:
-        logfunc(f'No WGET History file available')
+        logfunc(f'No Alphine Linux Bash History file available')
     
 __artifacts__ = {
-        "WGET History": (
-                "WGET History",
-                ('*/.wget-hsts'),
-                get_WgetHistory)
+        "Alphine Linux Bash History": (
+                "Alphine Linux Bash History",
+                ('*/.ash_history'),
+                get_AshHistory)
 }
