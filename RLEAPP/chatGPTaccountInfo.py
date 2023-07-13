@@ -1,7 +1,7 @@
 # Module Description: Parses ChatGPT user info from a data export from ChatGPT.
 # Author: @upintheairsheep
 # Date: 2023-07-13
-# Artifact version: 0.0.0
+# Artifact version: 1
 # Requirements: none
 
 import datetime
@@ -22,28 +22,25 @@ def get_chatGPTuser(files_found, report_folder, seeker, wrap_text):
             data = json.loads(f.read())
         data_list = []
         
-        sEng_suggestions_url = ''
-        sEng_favicon_url = ''
-        sEng_safeAreplace = ''
-        sEng_date = ''
+        cGPTu_id = ''
+        cGPTu_email = ''
+        cGPTu_plus = ''
+        cGPTu_phoneN = ''
 
-        for site in data['Search Extensions']:
-            
-            ext_name = site['name']
-            ext_version = site['version']
-            ext_ID = site['id']
-            ext_enabled = site['enabled']
-            incoginito_enabled = site['incognito_enabled']
-            remote_install = site['remote_install']
+        for site in data:
+            cGPTu_id = site['id']
+            cGPTu_email = site['email']
+            cGPTu_plus = site['chatgpt_plus_user']
+            cGPTu_phoneN = site['phone_number']
                
-            data_list.append((ext_name, ext_version, ext_ID, ext_enabled, incoginito_enabled, remote_install))
+            data_list.append((cGPTu_id, cGPTu_email, cGPTu_plus, cGPTu_phoneN))
 
         num_entries = len(data_list)
         if num_entries > 0:
-            report = ArtifactHtmlReport('Chrome Search Engines')
-            report.start_artifact_report(report_folder, 'Chrome Search Engines')
+            report = ArtifactHtmlReport('ChatGPT User Information')
+            report.start_artifact_report(report_folder, 'ChatGPT User Information')
             report.add_script()
-            data_headers = ('Name','Version','ID','Enabled','Incognito Enabled','Remote Install')
+            data_headers = ('User ID','User Email Adress','Does this user use ChatGPT Plus?','User Phone Number')
 
             report.write_artifact_data_table(data_headers, data_list, file_found)
             report.end_artifact_report()
