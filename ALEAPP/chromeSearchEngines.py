@@ -1,7 +1,7 @@
 # Module Description: Parses Google Chrome Search Engines from Takeout
 # Author: @upintheairsheep
 # Date: 2023-07-13
-# Artifact version: 0.0.1-canary
+# Artifact version: 0.0.0
 # Requirements: none
 
 import datetime
