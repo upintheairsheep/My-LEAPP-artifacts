@@ -41,21 +41,28 @@ def get_chromeSearchEngines(files_found, report_folder, seeker, wrap_text):
 
         for site in data['Search Extensions']:
             
-            ext_name = site['name']
-            ext_version = site['version']
-            ext_ID = site['id']
-            ext_enabled = site['enabled']
-            incoginito_enabled = site['incognito_enabled']
-            remote_install = site['remote_install']
+            sEng_suggestions_url = site['suggestions_url']
+            sEng_favicon_url = site['favicon_url']
+            sEng_safeAreplace = site['safe_for_autoreplace']
+            sEng_date = site['date_created']
+            sEng_url = site['url']
+            sEng_ntpurl = site['new_tab_url']
+            sEng_originUrl = site['originating_url']
+            sEng_syncGUID = site['sync_guid']
+            sEng_shortName = site['short_name']
+            sEng_kWord = site['keyword']
+            sEng_inputEnc = site['input_encodings']
+            sEng_prePopID = site['prepopulate_id']
+            sEng_lastModified = site['last_modified']
                
-            data_list.append((ext_name, ext_version, ext_ID, ext_enabled, incoginito_enabled, remote_install))
+            data_list.append((sEng_shortName, sEng_kWord, sEng_date, sEng_lastModified, url, sEng_originUrl, sEng_syncGUID, sEng_favicon_url, sEng_suggestions_url, sEng_ntpurl, sEng_inputEnc, sEng_safeAreplace, sEng_prePopID))
 
         num_entries = len(data_list)
         if num_entries > 0:
             report = ArtifactHtmlReport('Chrome Search Engines')
             report.start_artifact_report(report_folder, 'Chrome Search Engines')
             report.add_script()
-            data_headers = ('Name','Version','ID','Enabled','Incognito Enabled','Remote Install')
+            data_headers = ('(Short) Name','Keyword','Date Created','Last Modified','URL Syntax','API URL', 'Sync GUID', 'Favicon URL', 'Suggestions URL', 'New Tab URL', 'Input Encodings', 'Safe Autoreplace?', 'Pre-populate ID')
 
             report.write_artifact_data_table(data_headers, data_list, file_found)
             report.end_artifact_report()
