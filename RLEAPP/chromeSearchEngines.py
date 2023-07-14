@@ -35,6 +35,11 @@ def get_chromeSearchEngines(files_found, report_folder, seeker, wrap_text):
         sEng_inputEnc = ''
         sEng_prePopID = ''
         sEng_lastModified = ''
+        sEng_imageurlpostparams = ''
+        sEng_isActive = ''
+        sEng_imageurl = ''
+        sEng_starterpackID = ''
+
 
 
 
@@ -54,15 +59,19 @@ def get_chromeSearchEngines(files_found, report_folder, seeker, wrap_text):
             sEng_inputEnc = site['input_encodings']
             sEng_prePopID = site['prepopulate_id']
             sEng_lastModified = site['last_modified']
+            sEng_imageurlpostparams = site['image_url_post_params']
+            sEng_isActive = site['is_active']
+            sEng_imageurl = site['image_url']
+            sEng_starterpackID = site['starter_pack_id']
                
-            data_list.append((sEng_shortName, sEng_kWord, sEng_date, sEng_lastModified, url, sEng_originUrl, sEng_syncGUID, sEng_favicon_url, sEng_suggestions_url, sEng_ntpurl, sEng_inputEnc, sEng_safeAreplace, sEng_prePopID))
+            data_list.append((sEng_shortName, sEng_kWord, sEng_date, sEng_lastModified, url, sEng_originUrl, sEng_syncGUID, sEng_favicon_url, sEng_suggestions_url, sEng_ntpurl, sEng_inputEnc, sEng_safeAreplace, sEng_prePopID, sEng_imageurlpostparams, sEng_isActive, sEng_imageurl, sEng_starterpackID))
 
         num_entries = len(data_list)
         if num_entries > 0:
             report = ArtifactHtmlReport('Chrome Search Engines')
             report.start_artifact_report(report_folder, 'Chrome Search Engines')
             report.add_script()
-            data_headers = ('(Short) Name','Keyword','Date Created','Last Modified','URL Syntax','API URL', 'Sync GUID', 'Favicon URL', 'Suggestions URL', 'New Tab URL', 'Input Encodings', 'Safe Autoreplace?', 'Pre-populate ID')
+            data_headers = ('(Short) Name','Keyword','Date Created','Last Modified','URL Syntax','API URL', 'Sync GUID', 'Favicon URL', 'Suggestions URL', 'New Tab URL', 'Input Encodings', 'Safe Autoreplace?', 'Pre-populate ID', 'Image URL Post Parameters', 'Is Active?', 'Image URL', 'Starter Pack ID')
 
             report.write_artifact_data_table(data_headers, data_list, file_found)
             report.end_artifact_report()
