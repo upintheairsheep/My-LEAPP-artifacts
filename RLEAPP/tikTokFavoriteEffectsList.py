@@ -23,7 +23,7 @@ def get_tikTokFavoriteEffects(files_found, report_folder, seeker, wrap_text):
         data_list = []
 
         tiktokfaveffectlink = ''
-        tiktokfaveeffectdate = ''
+        tiktokfaveffectdate = ''
 
         for site in data['Activity']:
             for site in data['Favorite Effects']:
