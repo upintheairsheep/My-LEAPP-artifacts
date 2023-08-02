@@ -15,7 +15,7 @@ def get_chromeArcPackageInfo(files_found, report_folder, seeker, wrap_text):
 
     for file_found in files_found:
         file_found = str(file_found)
-        if not os.path.basename(file_found) == 'SearchEngines.json': # skip -journal and other files
+        if not os.path.basename(file_found) == 'OS Settings.json': # skip -journal and other files
             continue
 
         with open(file_found, encoding = 'utf-8', mode = 'r') as f:
@@ -56,7 +56,7 @@ def get_chromeArcPackageInfo(files_found, report_folder, seeker, wrap_text):
             tlactivity = f'Chrome ARC Packages'
             timeline(report_folder, tlactivity, data_list, data_headers)
         else:
-            logfunc('No Chrome Search Engines data available')
+            logfunc('No Chrome ARC Packages data available')
 
 __artifacts__ = {
         "chromeArcPackageInfo": (
