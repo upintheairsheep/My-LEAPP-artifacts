@@ -1,6 +1,6 @@
-# Module Description: Parses Google ChromeOS ARCVM ARC information from Takeout's OS Settings
+# Module Description: Parses TikTok data from "Download My Data"
 # Author: @upintheairsheep
-# Date: 2023-07-14
+# Date: 2023-08-01
 # Artifact version: 0
 # Requirements: none
 
@@ -22,30 +22,23 @@ def get_tikTokFavoriteEffects(files_found, report_folder, seeker, wrap_text):
             data = json.loads(f.read())
         data_list = []
 
-        chromeARC_ver = ''
-        chromeARC_lastBack = ''
-        chromeARC_name = ''
-        chromeARC_bkID = ''
+        tiktokfaveffectlink = ''
+        tiktokfaveeffectdate = ''
 
-
-
-
-
-        for site in data['Arc Package']:
-
-            chromeARC_ver = site['package_version']
-            chromeARC_lastBack = site['last_backup_time']
-            chromeARC_name = site['package_name']
-            chromeARC_bkID = site['last_backup_android_id']
-
-            data_list.append((chromeARC_name, chromeARC_ver, chromeARC_lastBack, chromeARC_bkID))
+        for site in data['Activity']:
+            for site in data['Favorite Effects']:
+                    for site in data['FavoriteEffectsList']:
+                            tiktokfaveffectlink = site['Link']
+                            tiktokfaveffectdate = site['Date']
+                
+                            data_list.append((tiktokfaveffectlink, tiktokfaveffectdate))
 
         num_entries = len(data_list)
         if num_entries > 0:
             report = ArtifactHtmlReport('TikTok Favorite Effects')
             report.start_artifact_report(report_folder, 'TikTok Favorite Effects')
             report.add_script()
-            data_headers = ('Package Name','Package Version','Last Time Backed Up','Last Backup Android ID')
+            data_headers = ('Link', 'Date')
 
             report.write_artifact_data_table(data_headers, data_list, file_found)
             report.end_artifact_report()
