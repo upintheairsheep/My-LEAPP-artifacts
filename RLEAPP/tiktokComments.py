@@ -1,6 +1,6 @@
 # Module Description: Parses TikTok data from "Download My Data"
 # Author: @upintheairsheep
-# Date: 2023-08-01
+# Date: 2023-08-05
 # Artifact version: 0
 # Requirements: none
 
