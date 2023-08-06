@@ -1,6 +1,6 @@
 # Module Description: Parses TikTok data from "Download My Data"
 # Author: @upintheairsheep
-# Date: 2023-08-01
+# Date: 2023-08-05
 # Artifact version: 0
 # Requirements: none
 
@@ -34,20 +34,23 @@ def get_tikTokStatus(files_found, report_folder, seeker, wrap_text):
         for site in data['Activity']:
             for site in data['Status']:
                     for site in data['Status List']:
-                            tiktokStatus_date = site['Date']
-                            tiktokStatus_type = site['StatusdContent']
-                            tiktokStatus_link = site['Link']
-                            tiktokStatus_method = site['Method']
+                            tiktokStatus_1 = site['Resolution']
+                            tiktokStatus_2 = site['App Version']
+                            tiktokStatus_3 = site['IDFA']
+                            tiktokStatus_4 = site['GAID']
+                            tiktokStatus_5 = site['Android ID']
+                            tiktokStatus_6 = site['IDFV']
+                            tiktokStatus_7 = site['Web ID']
                     
                 
-                            data_list.append((tiktokStatus_date, tiktokStatus_type, tiktokStatus_link, tiktokStatus_method))
+                            data_list.append((tiktokStatus_1, tiktokStatus_2, tiktokStatus_3, tiktokStatus_4, tiktokStatus_5, tiktokStatus_6, tiktokStatus_7))
 
         num_entries = len(data_list)
         if num_entries > 0:
             report = ArtifactHtmlReport('TikTok Status')
             report.start_artifact_report(report_folder, 'TikTok Status')
             report.add_script()
-            data_headers = ('Date', 'Content Type', 'URL', 'Method')
+            data_headers = ('Screen Resolution', 'App Version', 'IDFA', 'GAID', 'Android ID', 'IDFV', 'Web ID')
 
             report.write_artifact_data_table(data_headers, data_list, file_found)
             report.end_artifact_report()
